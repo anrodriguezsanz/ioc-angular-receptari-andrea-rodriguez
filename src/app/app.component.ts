@@ -1,12 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.component.scss',
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
 })
 export class App {
-  protected readonly title = signal('ioc-angular-receptari-andrea-rodriguez');
+  nomApp = 'The Recipe Archive';
 }

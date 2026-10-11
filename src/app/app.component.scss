@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px;
+  background-color: #f9f6f0; 
+  color: #2c302e;
+  min-height: 100vh; 
+  font-family: 'Lora', serif; 
+  box-sizing: border-box;
+}
+
+h1, h2 {
+  color: #2a362c;
+  font-weight: 400; 
+}
+
+h1 {
+  border-bottom: 1px solid rgba(42, 54, 44, 0.15);
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+.card {
+  background-color: transparent; 
+  padding: 20px;
+  border: 1px solid rgba(74, 93, 78, 0.2);
+  border-radius: 4px;
+}
+
+.nota-aside {
+  background-color: rgba(74, 93, 78, 0.08); 
+  border-left: 3px solid #4a5d4e;
+  padding: 15px 20px;
+  color: #2a362c;
+}
