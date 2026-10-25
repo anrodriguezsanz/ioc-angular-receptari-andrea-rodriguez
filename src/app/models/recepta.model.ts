@@ -6,4 +6,6 @@ export interface Recepta {
   dataCreacio: Date;
   tempsPreparacio: number;
   destacada?: boolean;
+  ingredients: string[];
+  passes: string[];
 }

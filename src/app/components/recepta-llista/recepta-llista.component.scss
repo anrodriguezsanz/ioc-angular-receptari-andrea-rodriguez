@@ -4,7 +4,9 @@
   gap: 20px;
   padding: 40px;
   box-sizing: border-box;
+  min-height: 100vh;
 }
+
 h1 {
   color: #2a362c;
   font-weight: 400; 
@@ -12,8 +14,136 @@ h1 {
   padding-bottom: 10px;
   margin-top: 0;
 }
+
+.comptador-resultats {
+  font-size: 0.9rem;
+  color: #595959;
+  margin: 0;
+}
+
+.layout-principal {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  flex: 1;
+}
+
 .grid-receptes { 
   display: grid; 
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
   gap: 20px; 
+  flex: 1;
+}
+
+.missatge-buit {
+  color: #595959;
+  font-style: italic;
+  grid-column: 1 / -1;
+}
+
+.panell-lateral-fix {
+  width: 380px;
+  min-width: 320px;
+  background-color: transparent;
+  border-left: 1px solid rgba(42, 54, 44, 0.15);
+  padding-left: 30px;
+  position: sticky;
+  top: 40px;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+
+  .detall-capcalera {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(42, 54, 44, 0.15);
+    padding-bottom: 15px;
+
+    h2 {
+      margin: 0;
+      color: #2a362c;
+      font-size: 1.6rem;
+      font-weight: 400;
+    }
+
+    .btn-tancar {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: #595959;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+
+      &:hover {
+        color: #2a362c;
+      }
+    }
+  }
+
+  .detall-cos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    p {
+      margin: 0;
+      color: #333;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .detall-categoria {
+      color: #4a5d4e;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .detall-temps, .detall-data {
+      font-size: 0.9rem;
+      color: #595959;
+    }
+
+    .detall-seccio {
+      margin-top: 5px;
+
+      h4 {
+        margin: 0 0 5px 0;
+        color: #2a362c;
+        font-size: 0.95rem;
+      }
+
+      ul, ol {
+        margin: 0;
+        padding-left: 20px;
+        font-size: 0.9rem;
+        color: #444;
+
+        li {
+          margin-bottom: 3px;
+        }
+      }
+    }
+  }
+
+.estat-buit-detall {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start; 
+    padding-top: 10px;
+
+    .missatge-instruccio {
+      color: #595959;
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
 }

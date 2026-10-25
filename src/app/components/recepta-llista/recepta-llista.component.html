@@ -3,14 +3,56 @@
   
   <app-filtres (canviFiltres)="aplicarFiltres($event)"></app-filtres>
 
-  <div class="grid-receptes">
-    @for (item of receptesFiltrades; track item.id) {
-      <app-recepta-targeta 
-        [recepta]="item" 
-        (seleccionar)="onSeleccionarRecepta($event)">
-      </app-recepta-targeta>
-    } @empty {
-      <p class="missatge-buit">No s'ha trobat cap recepta.</p>
-    }
+  <p class="comptador-resultats">Mostrant <strong>{{ receptesFiltrades.length }}</strong> receptes</p>
+
+  <div class="layout-principal">
+    <div class="grid-receptes">
+      @for (item of receptesFiltrades; track item.id) {
+        <app-recepta-targeta 
+          [recepta]="item" 
+          (seleccionar)="onSeleccionarRecepta($event)">
+        </app-recepta-targeta>
+      } @empty {
+        <p class="missatge-buit">No s'ha trobat cap recepta.</p>
+      }
+    </div>
+
+    <aside class="panell-lateral-fix" aria-live="polite">
+      @if (receptaSeleccionada) {
+        <div class="detall-capcalera">
+          <h2>{{ receptaSeleccionada.titol }}</h2>
+          <button class="btn-tancar" type="button" (click)="tancarDetall()">×</button>
+        </div>
+        
+        <div class="detall-cos">
+          <p class="detall-categoria"><strong>Categoria:</strong> {{ receptaSeleccionada.categoria }}</p>
+          <p class="detall-descripcio">{{ receptaSeleccionada.descripcio }}</p>
+          <p class="detall-temps"><strong>Temps de preparació:</strong> {{ receptaSeleccionada.tempsPreparacio }} min</p>
+          <p class="detall-data"><strong>Data de creació:</strong> {{ receptaSeleccionada.dataCreacio | date:'dd/MM/yyyy' }}</p>
+          
+          <div class="detall-seccio">
+            <h4>Ingredients:</h4>
+            <ul>
+              @for (ing of receptaSeleccionada.ingredients; track ing) {
+                <li>{{ ing }}</li>
+              }
+            </ul>
+          </div>
+
+          <div class="detall-seccio">
+            <h4>Passos:</h4>
+            <ol>
+              @for (pas of receptaSeleccionada.passes; track $index) {
+                <li>{{ pas }}</li>
+              }
+            </ol>
+          </div>
+        </div>
+      } @else {
+        <div class="estat-buit-detall">
+          <p class="missatge-instruccio">Seleccioneu una recepta de la llista per veure'n el detall complet, els ingredients i les passes.</p>
+        </div>
+      }
+    </aside>
   </div>
 </div>
