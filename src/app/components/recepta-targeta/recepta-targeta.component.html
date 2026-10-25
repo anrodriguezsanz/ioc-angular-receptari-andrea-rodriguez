@@ -1,0 +1,14 @@
+<div class="card" (click)="seleccionarTargeta()">
+  
+  <div class="icona-cor" [class.actiu]="recepta.destacada">
+    @if (recepta.destacada) {
+      ♥ <!-- He fet servir text en comptes d'icones per a no instal·lar una llibreria externa, de moment. -->
+    } @else {
+      ♡
+    }
+  </div>
+
+  <h3>{{ recepta.titol }}</h3>
+  <p>{{ recepta.descripcio }}</p>
+  <app-etiqueta-categoria [categoria]="recepta.categoria"></app-etiqueta-categoria>
+</div>

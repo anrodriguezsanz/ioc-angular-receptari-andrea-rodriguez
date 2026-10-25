@@ -1,0 +1,50 @@
+.card { 
+  background-color: transparent; 
+  padding: 20px; 
+  border: 1px solid rgba(74, 93, 78, 0.2); 
+  border-radius: 4px; 
+  cursor: pointer; 
+  transition: background-color 0.2s; 
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative; 
+}
+
+.card:hover { 
+  background-color: rgba(74, 93, 78, 0.05); 
+}
+
+.icona-cor {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #a3b0a6; 
+  
+  &.actiu {
+    color: #4a5d4e;
+  }
+}
+
+h3 { 
+  margin-top: 0; 
+  color: #2a362c; 
+  font-weight: 700; 
+  margin-bottom: 10px;
+  padding-right: 25px; 
+}
+
+p { 
+  color: #2c302e; 
+  flex-grow: 1; 
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+app-etiqueta-categoria {
+  align-self: flex-start;
+  margin-top: auto; 
+}

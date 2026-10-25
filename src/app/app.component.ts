@@ -1,12 +1,13 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { ReceptaLlistaComponent } from './components/recepta-llista/recepta-llista.component';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.component.scss',
-  templateUrl: './app.component.html',
+  imports: [ReceptaLlistaComponent],
+  template: `<app-recepta-llista></app-recepta-llista>`,
+  styleUrl: './app.component.scss'
 })
 export class App {
-  protected readonly title = signal('ioc-angular-receptari-andrea-rodriguez');
+  title = 'ioc-angular-receptari';
 }
+
