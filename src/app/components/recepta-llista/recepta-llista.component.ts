@@ -6,15 +6,32 @@ import { FiltresComponent } from '../filtres/filtres.component';
 
 @Component({
   selector: 'app-recepta-llista',
+  standalone: true,
   imports: [ReceptaTargetaComponent, FiltresComponent],
   templateUrl: './recepta-llista.component.html',
   styleUrl: './recepta-llista.component.scss'
 })
 export class ReceptaLlistaComponent {
-  llistaReceptes: Recepta[] = RECEPTES_MOCK;
-  receptaSeleccionada: Recepta | null = null;
+  receptes: Recepta[] = RECEPTES_MOCK;
+  
+  receptesFiltrades: Recepta[] = RECEPTES_MOCK;
 
-  onReceptaSeleccionada(recepta: Recepta) {
-    this.receptaSeleccionada = recepta;
+  aplicarFiltres(filtres: { text: string, categoria: string }) {
+    const textLower = filtres.text.toLowerCase().trim();
+
+    this.receptesFiltrades = this.receptes.filter(recepta => {
+      const coincideixText = textLower === '' || 
+        recepta.titol.toLowerCase().includes(textLower) || 
+        recepta.descripcio.toLowerCase().includes(textLower);
+      
+      const coincideixCategoria = filtres.categoria === '' || 
+        recepta.categoria === filtres.categoria;
+
+      return coincideixText && coincideixCategoria;
+    });
+  }
+
+  onSeleccionarRecepta(recepta: Recepta) {
+    console.log('Recepta seleccionada:', recepta.titol);
   }
 }

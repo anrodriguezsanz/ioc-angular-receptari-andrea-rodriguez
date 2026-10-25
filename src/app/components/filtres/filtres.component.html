@@ -1,10 +1,30 @@
-<div class="filtres-caixa">
+<form #filtresForm="ngForm" class="filtres-caixa" (ngSubmit)="aplicarFiltres()">
+  
   <div class="grup-control">
-    <input type="text" id="cercaText" placeholder="Cerca per títol, descripció...">
+    <input 
+      type="text" 
+      id="cercaText" 
+      name="textCerca"
+      [(ngModel)]="textCerca"
+      #textInput="ngModel"
+      required
+      minlength="3"
+      placeholder="Cerca per títol, descripció...">
+    
+    @if (textInput.invalid && (textInput.dirty || textInput.touched)) {
+      <span class="error-msg">
+        @if (textInput.errors?.['minlength']) {
+          Cal introduir com a mínim 3 caràcters.
+        }
+      </span>
+    }
   </div>
 
   <div class="grup-control">
-    <select id="cercaCategoria">
+    <select 
+      id="cercaCategoria"
+      name="categoriaSeleccionada"
+      [(ngModel)]="categoriaSeleccionada">
       <option value="">Totes les categories</option>
       <option value="Esmorzar">Esmorzar</option>
       <option value="Dinar">Dinar</option>
@@ -14,7 +34,8 @@
   </div>
 
   <div class="accions">
-    <button class="btn-aplicar">Filtrar</button>
-    <button class="btn-netejar">Restablir</button>
+    <button class="btn-aplicar" type="submit" [disabled]="filtresForm.invalid">Filtrar</button>
+    <button class="btn-netejar" type="button" (click)="netejarFiltres(filtresForm)">Restablir</button>
   </div>
-</div>
+
+</form>

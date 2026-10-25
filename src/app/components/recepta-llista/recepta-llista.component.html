@@ -1,13 +1,16 @@
 <div class="main-container">
   <h1>The Recipe Archive</h1>
-  <app-filtres></app-filtres>
   
+  <app-filtres (canviFiltres)="aplicarFiltres($event)"></app-filtres>
+
   <div class="grid-receptes">
-    @for (item of llistaReceptes; track item.id) {
+    @for (item of receptesFiltrades; track item.id) {
       <app-recepta-targeta 
         [recepta]="item" 
-        (seleccionar)="onReceptaSeleccionada($event)">
+        (seleccionar)="onSeleccionarRecepta($event)">
       </app-recepta-targeta>
+    } @empty {
+      <p class="missatge-buit">No s'ha trobat cap recepta.</p>
     }
   </div>
 </div>

@@ -1,5 +1,5 @@
 .filtres-caixa {
-  background-color: rgba(74, 93, 78, 0.08);
+  background-color: rgba(74, 93, 78, 0.08); 
   border: none;
   border-radius: 4px;
   padding: 20px;
@@ -7,7 +7,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  align-items: center;
+  align-items: flex-start; 
 }
 
 .grup-control {
@@ -15,6 +15,8 @@
   flex-direction: column;
   flex-grow: 1;
   min-width: 200px;
+  position: relative;
+  padding-bottom: 18px;
 }
 
 input, select {
@@ -64,4 +66,18 @@ button {
   &:hover {
     background-color: rgba(74, 93, 78, 0.1);
   }
+}
+
+.error-msg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #a4777e; 
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
