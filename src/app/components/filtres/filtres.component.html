@@ -1,6 +1,7 @@
 <form #filtresForm="ngForm" class="filtres-caixa" (ngSubmit)="aplicarFiltres()">
   
   <div class="grup-control">
+    <label for="cercaText" class="sr-only">Cercar receptes</label>
     <input 
       type="text" 
       id="cercaText" 
@@ -12,7 +13,7 @@
       placeholder="Cerca per títol, descripció...">
     
     @if (textInput.invalid && (textInput.dirty || textInput.touched)) {
-      <span class="error-msg">
+      <span class="error-msg" role="alert">
         @if (textInput.errors?.['minlength']) {
           Cal introduir com a mínim 3 caràcters.
         }
@@ -21,6 +22,7 @@
   </div>
 
   <div class="grup-control">
+    <label for="cercaCategoria" class="sr-only">Filtrar per categoria</label>
     <select 
       id="cercaCategoria"
       name="categoriaSeleccionada"

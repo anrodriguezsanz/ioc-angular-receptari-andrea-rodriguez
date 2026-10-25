@@ -10,6 +10,12 @@
   height: 100%;
   box-sizing: border-box;
   position: relative; 
+
+  &:focus-visible {
+    outline: 3px solid #1A4B83;
+    outline-offset: 3px;
+    border-color: #1A4B83;
+  }
 }
 
 .card:hover { 

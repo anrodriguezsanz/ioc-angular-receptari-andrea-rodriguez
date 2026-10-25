@@ -1,9 +1,13 @@
-<div class="main-container">
+<a href="#contingut-principal" class="skip-link">Saltar al contingut principal</a>
+
+<div class="main-container" id="contingut-principal">
   <h1>The Recipe Archive</h1>
   
   <app-filtres (canviFiltres)="aplicarFiltres($event)"></app-filtres>
 
-  <p class="comptador-resultats">Mostrant <strong>{{ receptesFiltrades.length }}</strong> receptes</p>
+  <p class="comptador-resultats" role="status" aria-live="polite">
+    Mostrant <strong>{{ receptesFiltrades.length }}</strong> receptes
+  </p>
 
   <div class="layout-principal">
     <div class="grid-receptes">
@@ -13,7 +17,7 @@
           (seleccionar)="onSeleccionarRecepta($event)">
         </app-recepta-targeta>
       } @empty {
-        <p class="missatge-buit">No s'ha trobat cap recepta.</p>
+        <p class="missatge-buit" role="alert">No s'ha trobat cap recepta.</p>
       }
     </div>
 
@@ -21,7 +25,7 @@
       @if (receptaSeleccionada) {
         <div class="detall-capcalera">
           <h2>{{ receptaSeleccionada.titol }}</h2>
-          <button class="btn-tancar" type="button" (click)="tancarDetall()">×</button>
+          <button class="btn-tancar" type="button" (click)="tancarDetall()" aria-label="Tancar detall">×</button>
         </div>
         
         <div class="detall-cos">

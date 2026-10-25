@@ -1,8 +1,15 @@
-<div class="card" (click)="seleccionarTargeta()">
+<div 
+  class="card" 
+  tabindex="0" 
+  role="button" 
+  aria-label="Seleccionar recepta: {{ recepta.titol }}"
+  (click)="seleccionarTargeta()" 
+  (keyup.enter)="seleccionarTargeta()"
+  (keyup.space)="seleccionarTargeta()">
   
   <div class="icona-cor" [class.actiu]="recepta.destacada">
     @if (recepta.destacada) {
-      ♥ <!-- He fet servir text en comptes d'icones per a no instal·lar una llibreria externa, de moment. -->
+      ♥
     } @else {
       ♡
     }
