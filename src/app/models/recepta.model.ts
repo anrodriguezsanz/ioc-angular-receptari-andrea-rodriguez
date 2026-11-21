@@ -1,11 +1,13 @@
+export type CategoriaRecepta = 'Esmorzar' | 'Dinar' | 'Sopar' | 'Postres';
+
 export interface Recepta {
   id: number;
   titol: string;
   descripcio: string;
-  categoria: 'Esmorzar' | 'Dinar' | 'Sopar' | 'Postres';
+  categoria: CategoriaRecepta;
   dataCreacio: Date;
   tempsPreparacio: number;
-  destacada?: boolean;
+  destacada: boolean;
   ingredients: string[];
   passes: string[];
 }
