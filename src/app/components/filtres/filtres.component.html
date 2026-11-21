@@ -1,21 +1,28 @@
-<form #filtresForm="ngForm" class="filtres-caixa" (ngSubmit)="aplicarFiltres()">
+<form [formGroup]="filtresForm" class="filtres-caixa" (ngSubmit)="aplicarFiltres()">
   
   <div class="grup-control">
     <label for="cercaText" class="sr-only">Cercar receptes</label>
     <input 
       type="text" 
       id="cercaText" 
-      name="textCerca"
-      [(ngModel)]="textCerca"
-      #textInput="ngModel"
-      required
-      minlength="3"
-      placeholder="Cerca per títol, descripció...">
+      formControlName="textCerca"
+      placeholder="Cerca per títol, descripció..."
+      [attr.aria-invalid]="textInput.invalid && (textInput.dirty || textInput.touched)">
     
-    @if (textInput.invalid && (textInput.dirty || textInput.touched)) {
+    @if (textInput.pending) {
+      <span class="pending-msg" role="status" aria-live="polite">
+        Comprovant coincidències...
+      </span>
+    } @else if (textInput.invalid && (textInput.dirty || textInput.touched)) {
       <span class="error-msg" role="alert">
-        @if (textInput.errors?.['minlength']) {
+        @if (textInput.hasError('nomesEspais')) {
+          La cerca no pot contenir només espais.
+        } @else if (textInput.hasError('massaCurt')) {
           Cal introduir com a mínim 3 caràcters.
+        } @else if (textInput.hasError('caractersNoPermesos')) {
+          Caràcters no permesos (&lt;, &gt;, &#123;, &#125;).
+        } @else if (textInput.hasError('senseResultatsApi')) {
+          Cap recepta coincideix amb els criteris de cerca.
         }
       </span>
     }
@@ -25,8 +32,7 @@
     <label for="cercaCategoria" class="sr-only">Filtrar per categoria</label>
     <select 
       id="cercaCategoria"
-      name="categoriaSeleccionada"
-      [(ngModel)]="categoriaSeleccionada">
+      formControlName="categoriaSeleccionada">
       <option value="">Totes les categories</option>
       <option value="Esmorzar">Esmorzar</option>
       <option value="Dinar">Dinar</option>
@@ -36,8 +42,37 @@
   </div>
 
   <div class="accions">
-    <button class="btn-aplicar" type="submit" [disabled]="filtresForm.invalid">Filtrar</button>
-    <button class="btn-netejar" type="button" (click)="netejarFiltres(filtresForm)">Restablir</button>
+    <button class="btn-aplicar" type="submit" [disabled]="filtresForm.invalid || textInput.pending">Filtrar</button>
+    <button class="btn-netejar" type="button" (click)="netejarFiltres()">Restablir</button>
   </div>
+
+  @if (historialCerques().length > 0) {
+    <div class="historial-cerques" aria-label="Historial de cerques recents">
+      <span class="historial-etiqueta">Cerques recents:</span>
+      <div class="historial-xips">
+        @for (terme of historialCerques(); track terme) {
+          <button
+            type="button"
+            class="xip-historial"
+            (click)="aplicarDesdeHistorial(terme)"
+            [title]="'Tornar a cercar: ' + terme">
+            <span>{{ terme }}</span>
+            <span
+              class="xip-eliminar"
+              role="button"
+              tabindex="0"
+              [attr.aria-label]="'Eliminar ' + terme + ' de l\'historial'"
+              (click)="eliminarDelHistorial(terme, $event)"
+              (keydown.enter)="eliminarDelHistorial(terme, $event)">
+              ×
+            </span>
+          </button>
+        }
+      </div>
+      <button type="button" class="btn-esborrar-historial" (click)="netejarHistorial()">
+        Esborrar historial
+      </button>
+    </div>
+  }
 
 </form>

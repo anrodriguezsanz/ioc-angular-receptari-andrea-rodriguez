@@ -77,6 +77,76 @@ button {
   white-space: nowrap;
 }
 
+.pending-msg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #4a5d4e;
+  font-size: 0.75rem;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.historial-cerques {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(74, 93, 78, 0.15);
+  font-size: 0.8rem;
+
+  .historial-etiqueta {
+    color: #4a5d4e;
+  }
+
+  .historial-xips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .xip-historial {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background-color: #f9f6f0;
+    border: 1px solid rgba(74, 93, 78, 0.35);
+    border-radius: 14px;
+    color: #2c302e;
+    font-size: 0.8rem;
+
+    &:hover {
+      background-color: rgba(74, 93, 78, 0.12);
+    }
+
+    .xip-eliminar {
+      font-weight: 700;
+      color: #4a5d4e;
+      padding: 0 2px;
+
+      &:hover {
+        color: #a4777e;
+      }
+    }
+  }
+
+  .btn-esborrar-historial {
+    background: none;
+    border: none;
+    padding: 4px 6px;
+    color: #4a5d4e;
+    text-decoration: underline;
+    font-size: 0.78rem;
+
+    &:hover {
+      color: #2c302e;
+    }
+  }
+}
+
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
