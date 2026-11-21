@@ -7,7 +7,7 @@ export interface Recepta {
   categoria: CategoriaRecepta;
   dataCreacio: Date;
   tempsPreparacio: number;
-  destacada: boolean;
+  destacada?: boolean;
   ingredients: string[];
   passes: string[];
 }

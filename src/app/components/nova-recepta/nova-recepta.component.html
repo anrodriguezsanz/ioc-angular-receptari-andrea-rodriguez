@@ -1,0 +1,52 @@
+<form class="formulari-alta" [formGroup]="formulariAlta" (ngSubmit)="enviar()">
+  <h2>Afegir nova recepta</h2>
+
+  <div class="fila-camps">
+    <div class="camp">
+      <label for="altaTitol">Títol de la recepta</label>
+      <input id="altaTitol" type="text" formControlName="titol" placeholder="Ex: Gaspatxo andalús">
+    </div>
+
+    <div class="camp">
+      <label for="altaCategoria">Categoria</label>
+      <select id="altaCategoria" formControlName="categoria">
+        <option value="Esmorzar">Esmorzar</option>
+        <option value="Dinar">Dinar</option>
+        <option value="Sopar">Sopar</option>
+        <option value="Postres">Postres</option>
+      </select>
+    </div>
+
+    <div class="camp">
+      <label for="altaTemps">Temps preparació (min)</label>
+      <input id="altaTemps" type="number" formControlName="tempsPreparacio" min="1">
+    </div>
+  </div>
+
+  <div class="camp">
+    <label for="altaDescripcio">Descripció</label>
+    <input id="altaDescripcio" type="text" formControlName="descripcio" placeholder="Breu resum del plat...">
+  </div>
+
+  <div class="fila-camps">
+    <div class="camp">
+      <label for="altaIngredients">Ingredients (separats per comes)</label>
+      <input id="altaIngredients" type="text" formControlName="ingredientsText" placeholder="Tomàquet, Cogombre, Pebrot, Oli d'oliva">
+    </div>
+
+    <div class="camp">
+      <label for="altaPasses">Passes (una per línia)</label>
+      <textarea id="altaPasses" rows="2" formControlName="passesText" placeholder="Netejar les verdures.&#10;Triturar-ho tot i servir fred."></textarea>
+    </div>
+  </div>
+
+  <div class="camp-checkbox">
+    <input id="altaDestacada" type="checkbox" formControlName="destacada">
+    <label for="altaDestacada">Marcar com a recepta destacada</label>
+  </div>
+
+  <div class="accions-alta">
+    <button type="submit" class="btn-desar" [disabled]="formulariAlta.invalid">Desar recepta (POST)</button>
+    <button type="button" class="btn-cancellar" (click)="cancellar.emit()">Cancel·lar</button>
+  </div>
+</form>

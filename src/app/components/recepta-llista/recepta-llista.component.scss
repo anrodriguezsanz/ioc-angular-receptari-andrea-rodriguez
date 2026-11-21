@@ -7,12 +7,76 @@
   min-height: 100vh;
 }
 
-h1 {
-  color: #2a362c;
-  font-weight: 400; 
+.capcalera-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
   border-bottom: 1px solid rgba(42, 54, 44, 0.15);
   padding-bottom: 10px;
-  margin-top: 0;
+
+  h1 {
+    color: #2a362c;
+    font-weight: 400; 
+    border-bottom: none;
+    padding-bottom: 0;
+    margin: 0;
+  }
+
+  .btn-nova-recepta {
+    background: #2a362c;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: #4a5d4e;
+    }
+  }
+}
+
+.banner-error {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background-color: #fff2ef;
+  border: 1px solid #8a1f11;
+  color: #8a1f11;
+  border-radius: 3px;
+
+  .btn-reintentar {
+    background-color: #8a1f11;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+}
+
+.banner-exit {
+  padding: 10px 16px;
+  background-color: #eef7f0;
+  border: 1px solid #2a5d34;
+  color: #2a5d34;
+  border-radius: 3px;
+}
+
+.estat-carrega {
+  padding: 14px 16px;
+  background-color: #eef7f0;
+  border: 1px solid rgba(42, 93, 52, 0.25);
+  color: #2a5d34;
+  font-weight: 600;
+  border-radius: 3px;
+  margin: 0;
 }
 
 .skip-link {
@@ -34,7 +98,7 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 a:focus-visible {
-  outline: 3px solid #1A4B83;
+  outline: 3px solid #2a5d34;
   outline-offset: 2px;
 }
 
@@ -172,6 +236,11 @@ a:focus-visible {
 }
 
 @media (max-width: 900px) {
+  .capcalera-principal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .layout-principal {
     flex-direction: column;
   }

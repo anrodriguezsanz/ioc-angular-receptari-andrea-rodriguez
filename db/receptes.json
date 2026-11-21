@@ -1,7 +1,7 @@
 {
   "receptes": [
     {
-      "id": 1,
+      "id": "1",
       "titol": "Truita de patates",
       "descripcio": "Truita amb ceba i patates confitades.",
       "categoria": "Dinar",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "titol": "Torrada d'alvocat",
       "descripcio": "Pa rústic, alvocat aixafat i un toc de llimona.",
       "categoria": "Esmorzar",
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "titol": "Radiatori a la bolonyesa",
       "descripcio": "Pasta amb tomàquet, carn picada, sofregit de verdura i formatge ratllat.",
       "categoria": "Dinar",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "titol": "Amanida d'alfàbrega i cireres",
       "descripcio": "Amanida d'alfàbrega, cireres, formatge fresc i pistatxo",
       "categoria": "Sopar",
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": "5",
       "titol": "Cheesecake al forn",
       "descripcio": "Pastís de formatge amb base de galeta.",
       "categoria": "Postres",
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": 6,
+      "id": "6",
       "titol": "Salmó a la planxa",
       "descripcio": "Llom de salmó daurat amb espàrrecs.",
       "categoria": "Sopar",
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": 7,
+      "id": "7",
       "titol": "Pancakes de civada",
       "descripcio": "Pancakes amb xocolata desfeta.",
       "categoria": "Esmorzar",
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": 8,
+      "id": "8",
       "titol": "Crema de carbassa",
       "descripcio": "Crema de carabassa i ceba al forn, amb mango i formatge de cabra.",
       "categoria": "Sopar",
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": 9,
+      "id": "9",
       "titol": "Brownie de xocolata",
       "descripcio": "Brownie de xocolata negra amb trossets d'anacards.",
       "categoria": "Postres",
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": 10,
+      "id": "10",
       "titol": "Arròs negre",
       "descripcio": "Arròs de gambes amb tinta de calamar i allioli.",
       "categoria": "Dinar",
@@ -203,7 +203,29 @@
         "Sofregir les gambes i retirar.",
         "Afegir l'arròs, el fumet i la tinta de calamar.",
         "Coure fins que l'arròs estigui al punt i servir amb allioli."
-        ]
+      ]
+    },
+    {
+      "titol": "Gaspatxo",
+      "descripcio": "Sopa freda de verdures",
+      "categoria": "Dinar",
+      "tempsPreparacio": 20,
+      "destacada": false,
+      "ingredients": [
+        "Tomàquet",
+        "Cogombre",
+        "Ceba",
+        "Pebrot verd",
+        "All",
+        "Oli d'oliva"
+      ],
+      "passes": [
+        "Netejar les verdures i abocar-les al processador d'aliments",
+        "Triturar a màxima potència mentre li afegim oli per a emulsionar"
+      ],
+      "id": "h_kB88Bkmb4",
+      "dataCreacio": "2026-11-21T13:51:06.505Z"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

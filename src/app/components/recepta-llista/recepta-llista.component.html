@@ -1,62 +1,102 @@
 <a href="#contingut-principal" class="skip-link">Saltar al contingut principal</a>
 
 <div class="main-container" id="contingut-principal">
-  <h1>The Recipe Archive</h1>
-  
+  <header class="capcalera-principal">
+    <h1>The Recipe Archive</h1>
+    <button
+      type="button"
+      class="btn-nova-recepta"
+      (click)="mostrarFormulariAlta.set(!mostrarFormulariAlta())">
+      @if (mostrarFormulariAlta()) {
+        Tancar formulari
+      } @else {
+        + Nova recepta
+      }
+    </button>
+  </header>
+
+  @if (mostrarFormulariAlta()) {
+    <app-nova-recepta
+      (receptaCreada)="onReceptaCreada($event)"
+      (cancellar)="mostrarFormulariAlta.set(false)">
+    </app-nova-recepta>
+  }
+
+  @if (missatgeExit()) {
+    <div class="banner-exit" role="status" aria-live="polite">
+      {{ missatgeExit() }}
+    </div>
+  }
+
   <app-filtres (canviFiltres)="aplicarFiltres($event)"></app-filtres>
 
-  <p class="comptador-resultats" role="status" aria-live="polite">
-    Mostrant <strong>{{ receptesFiltrades.length }}</strong> receptes
-  </p>
-
-  <div class="layout-principal">
-    <div class="grid-receptes">
-      @for (item of receptesFiltrades; track item.id) {
-        <app-recepta-targeta 
-          [recepta]="item" 
-          (seleccionar)="onSeleccionarRecepta($event)">
-        </app-recepta-targeta>
-      } @empty {
-        <p class="missatge-buit" role="alert">No s'ha trobat cap recepta.</p>
-      }
+  @if (receptesService.error()) {
+    <div class="banner-error" role="alert" aria-live="assertive">
+      <span>{{ receptesService.error() }}</span>
+      <button type="button" class="btn-reintentar" (click)="receptesService.reintentar()">
+        Reintentar
+      </button>
     </div>
+  }
 
-    <aside class="panell-lateral-fix" aria-live="polite">
-      @if (receptaSeleccionada) {
-        <div class="detall-capcalera">
-          <h2>{{ receptaSeleccionada.titol }}</h2>
-          <button class="btn-tancar" type="button" (click)="tancarDetall()" aria-label="Tancar detall">×</button>
-        </div>
-        
-        <div class="detall-cos">
-          <p class="detall-categoria"><strong>Categoria:</strong> {{ receptaSeleccionada.categoria }}</p>
-          <p class="detall-descripcio">{{ receptaSeleccionada.descripcio }}</p>
-          <p class="detall-temps"><strong>Temps de preparació:</strong> {{ receptaSeleccionada.tempsPreparacio }} min</p>
-          <p class="detall-data"><strong>Data de creació:</strong> {{ receptaSeleccionada.dataCreacio | date:'dd/MM/yyyy' }}</p>
+  @if (receptesService.carregant()) {
+    <p class="estat-carrega" role="status" aria-live="polite">
+      Carregant receptes...
+    </p>
+  } @else {
+    <p class="comptador-resultats" role="status" aria-live="polite">
+      Mostrant <strong>{{ receptesService.receptes().length }}</strong> receptes
+    </p>
+
+    <div class="layout-principal">
+      <div class="grid-receptes">
+        @for (item of receptesService.receptes(); track item.id) {
+          <app-recepta-targeta 
+            [recepta]="item" 
+            (seleccionar)="onSeleccionarRecepta($event)">
+          </app-recepta-targeta>
+        } @empty {
+          <p class="missatge-buit" role="alert">No s'ha trobat cap recepta.</p>
+        }
+      </div>
+
+      <aside class="panell-lateral-fix" aria-live="polite">
+        @if (receptaSeleccionada) {
+          <div class="detall-capcalera">
+            <h2>{{ receptaSeleccionada.titol }}</h2>
+            <button class="btn-tancar" type="button" (click)="tancarDetall()" aria-label="Tancar detall">×</button>
+          </div>
           
-          <div class="detall-seccio">
-            <h4>Ingredients:</h4>
-            <ul>
-              @for (ing of receptaSeleccionada.ingredients; track ing) {
-                <li>{{ ing }}</li>
-              }
-            </ul>
-          </div>
+          <div class="detall-cos">
+            <p class="detall-categoria"><strong>Categoria:</strong> {{ receptaSeleccionada.categoria }}</p>
+            <p class="detall-descripcio">{{ receptaSeleccionada.descripcio }}</p>
+            <p class="detall-temps"><strong>Temps de preparació:</strong> {{ receptaSeleccionada.tempsPreparacio }} min</p>
+            <p class="detall-data"><strong>Data de creació:</strong> {{ receptaSeleccionada.dataCreacio | date:'dd/MM/yyyy' }}</p>
+            
+            <div class="detall-seccio">
+              <h4>Ingredients:</h4>
+              <ul>
+                @for (ing of receptaSeleccionada.ingredients; track ing) {
+                  <li>{{ ing }}</li>
+                }
+              </ul>
+            </div>
 
-          <div class="detall-seccio">
-            <h4>Passos:</h4>
-            <ol>
-              @for (pas of receptaSeleccionada.passes; track $index) {
-                <li>{{ pas }}</li>
-              }
-            </ol>
+            <div class="detall-seccio">
+              <h4>Passos:</h4>
+              <ol>
+                @for (pas of receptaSeleccionada.passes; track $index) {
+                  <li>{{ pas }}</li>
+                }
+              </ol>
+            </div>
           </div>
-        </div>
-      } @else {
-        <div class="estat-buit-detall">
-          <p class="missatge-instruccio">Seleccioneu una recepta de la llista per veure'n el detall complet, els ingredients i les passes.</p>
-        </div>
-      }
-    </aside>
-  </div>
+        } @else {
+          <div class="estat-buit-detall">
+            <p class="missatge-instruccio">Seleccioneu una recepta de la llista per veure'n el detall complet, els ingredients i les passes.</p>
+          </div>
+        }
+      </aside>
+    </div>
+  }
 </div>
