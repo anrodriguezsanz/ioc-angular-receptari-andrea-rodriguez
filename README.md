@@ -1,29 +1,55 @@
-# The Recipe Archive
+# The Recipe Archive — EAC3 (Serveis, API REST i Formularis Reactius)
 
-## Autora
-Andrea Rodríguez Sanz
+Aplicació web desenvolupada amb **Angular 22** per gestionar, cercar i crear receptes connectades a una API REST local simulada amb `json-server`.
 
-## Descripció
-Aplicació per registrar i consultar receptes de cuina.
+## Requisits previs
 
-## Versions utilitzades
-- Node.js 24.21.0
-- Angular CLI 22.2.1
-- npm 11.19.0
+- **Node.js** (v20 o superior) i **npm**
+- **Angular CLI** (`@angular/cli`)
 
-## Branca actual
-Aquesta EAC s'ha desenvolupat a la branca `ra2-components`.
+## Instal·lació i execució
 
-## Components
-- `ReceptaLlistaComponent` (Component pare): Gestiona l'estat global de la llista, el filtratge reactiu, el comptador de resultats i el panell lateral de detall.
-- `ReceptaTargetaComponent` (Component fill): Mostra la informació resumida de cada recepta i gestiona la interacció de selecció (amb suport de teclat i focus visible).
-- `FiltresComponent`: Formulari basat en plantilla (ngForm) amb validacions i associació de camps.
-- `EtiquetaCategoriaComponent`: Component auxiliar encarregat de categoritzar visualment cada recepta.
+1. **Instal·lar les dependències del projecte:**
 
+```bash
+npm install
+```
 
-## Com executar el projecte
-Per executar-lo, cal situar-se al directori arrel del projecte i introduïr la següent comanda a la terminal:
- `ng serve`
+2. **Arrencar l'API REST simulada (`json-server` al port 3000):**
+
+```bash
+npm run api
+```
+
+Aquest script executa `json-server --watch db/receptes.json --port 3000` i exposa el recurs `http://localhost:3000/receptes`.
+
+3. **Arrencar el servidor de desenvolupament d'Angular:**
+
+```bash
+ng serve
+```
+
+Obre el navegador a `http://localhost:4200`.
+
+## Arquitectura i funcionalitats (Branca `ra3-serveis`)
+
+- **Configuració i API (`db/receptes.json`, `src/app/config/api.config.ts`):** Fitxer JSON amb 10 receptes inicials i configuració centralitzada de la URL base i els endpoints.
+- **Models i Adaptador (`src/app/models/`, `src/app/adapters/`, `docs/models.md`):** Separació entre el contracte extern (`ReceptaApi`) i el model intern (`Recepta`), amb normalització de cadenes (`.trim()`), conversions numèriques segures, dates (`Date`), categories tipades i valors per defecte.
+- **Servei HTTP (`src/app/services/receptes-api.service.ts`):** Encapsulació de `HttpClient` amb peticions `GET` i `POST`, gestió reactiva d'estats (`carregant`, `error` i `receptes` mitjançant `signals`), reintent de l'última consulta (`reintentar()`) i cancel·lació de peticions anteriors amb `switchMap`.
+- **Formulari reactiu i historial (`src/app/components/filtres/`, `src/app/validators/cerca.validators.ts`):** Cerca reactiva amb `ReactiveFormsModule` i `FormBuilder`, validador síncron (`termeCercaValidValidator`), validador asíncron contra l'API (`termeExistentApiValidator`), `debounceTime(400)` sobre `valueChanges` i historial persistent a `localStorage` sota la clau `recipe_archive_historial_cerques`.
+- **Creació de receptes (`src/app/components/nova-recepta/`):** Formulari reactiu per desar noves receptes a l'API mitjançant `POST`.
+
+## Execució de les proves unitàries
+
+Per executar la bateria de tests unitaris (adaptador, servei HTTP i components):
+
+```bash
+npm test
+```
+
+## Documentació addicional
+
+- `docs/models.md`: Especificació detallada del contracte de l'API (`ReceptaApi`), el model intern (`Recepta`) i les regles de transformació de l'adaptador.
 
 ## Enllaç del repositori
 https://github.com/anrodriguezsanz/ioc-angular-receptari-andrea-rodriguez

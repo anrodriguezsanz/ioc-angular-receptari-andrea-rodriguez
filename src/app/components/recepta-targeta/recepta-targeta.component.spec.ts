@@ -11,6 +11,17 @@ describe('ReceptaTargeta', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(ReceptaTargetaComponent);
+    fixture.componentRef.setInput('recepta', {
+      id: 1,
+      titol: 'Truita de patates',
+      descripcio: 'Recepta tradicional',
+      categoria: 'Sopar',
+      dataCreacio: new Date('2026-11-01'),
+      tempsPreparacio: 30,
+      destacada: true,
+      ingredients: ['Ous', 'Patates'],
+      passes: ['Fregir patates', 'Quallar la truita']
+    });
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

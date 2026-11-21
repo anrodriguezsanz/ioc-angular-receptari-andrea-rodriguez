@@ -11,6 +11,7 @@ describe('EtiquetaCategoria', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(EtiquetaCategoriaComponent);
+    fixture.componentRef.setInput('categoria', 'Dinar');
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
